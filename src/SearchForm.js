@@ -1,32 +1,61 @@
 import React, {Component} from 'react';
+import JobCardCollections from './JobCardCollection';
 
 export default class SearchForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
             "linkedin":false,
-            "indeed":false
+            "indeed":false,
+            "role": null,
+            "location": null,
+            "jobArray": []
         }
-
-        this.handleClick = this.handleClick.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleClick(e){
-        const target = e.target;
-        const name = target.name;
+    handleButtonClick(e){
+        const name = e.target.name;
         this.setState({
-            [name]: !this.state[name]
+            [name]: this.state[name] ? false : true
         });
+    }
+
+    handleInputChange(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        })
     }
 
     render() {
         return (
             <div>
-                <p>Choose which sites you would like to search</p>
-                <button name="indeed" onClick={(e) => this.handleClick(e)}>Indeed.com</button>
-                <button name="linkedin" onClick={(e) => this.handleClick(e)}>Linkedin</button>
+                <React.Fragment>
+                    <p>Choose which sites you would like to search</p>
+                    <button name="indeed" onClick={(e) => this.handleButtonClick(e)}>Indeed.com</button>
+                    <button name="linkedin" onClick={(e) => this.handleButtonClick(e)}>Linkedin</button>
+                    <form>
+                        <label>
+                            Desired Role:
+                            <input
+                            name="role"
+                            onChange={this.handleInputChange} />
+                        </label>
+                        <label>
+                            Location:
+                            <input
+                            name="location"
+                            onChange={this.handleInputChange} />
+                        </label>
+                    </form>
+                </React.Fragment>
+                <JobCardCollections props={this.state}/>
             </div>
         )
     }
 }
-
