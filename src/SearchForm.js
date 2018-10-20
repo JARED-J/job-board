@@ -17,8 +17,8 @@ export default class SearchForm extends Component {
 
     handleButtonClick(e){
         const name = e.target.name;
-        this.setState({
-            [name]: this.state[name] ? false : true
+        this.setState((prevState, props) => {
+            return {[name]: !prevState[name]}
         });
     }
 
@@ -26,9 +26,8 @@ export default class SearchForm extends Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-
-        this.setState({
-            [name]: value
+        this.setState((prevState, props) => {
+            return {[name]: value}
         })
     }
 
