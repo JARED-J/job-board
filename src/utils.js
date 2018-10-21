@@ -1,4 +1,4 @@
-async function linkedin(role, loc){
+export async function linkedinFetch(role, loc){
     // Function maps out query for linkedin api call
 
     fetch()
@@ -9,7 +9,7 @@ async function linkedin(role, loc){
 }
 
 
-async function indeed(role, loc){
+export async function indeedFetch(role, loc){
     // Function maps out query for indeed api call
 
     fetch()
@@ -17,9 +17,4 @@ async function indeed(role, loc){
             const newState = { ...this.state.jobArray, "jobArray": jobs};
             this.setState({ "jobArray": newState});
         })  
-}
-
-export default {
-    linkedin,
-    indeed
 }

@@ -1,9 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Navbar extends Component {
-    render() {
-        return (
-            <header>Welcome to Job Board!</header>
-        )
-    }
+export default function Navbar() {
+    return <header>Welcome to Job Board!</header>
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import JobCardCollections from './JobCardCollection';
+import {indeedFetch, linkedinFetch} from './utils';
 
 export default class SearchForm extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class SearchForm extends Component {
         }
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleButtonClick(e){
@@ -31,6 +33,14 @@ export default class SearchForm extends Component {
         })
     }
 
+    handleSubmit(e) {
+        e.preventDefault()
+        let role = this.state.role;
+        let location = this.state.location;
+        this.state.indeed && indeedFetch(role, location);
+        this.state.linkedin && linkedinFetch(role, location);
+    }
+
     render() {
         return (
             <div>
@@ -38,7 +48,7 @@ export default class SearchForm extends Component {
                     <p>Choose which sites you would like to search</p>
                     <button name="indeed" onClick={(e) => this.handleButtonClick(e)}>Indeed.com</button>
                     <button name="linkedin" onClick={(e) => this.handleButtonClick(e)}>Linkedin</button>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <label>
                             Desired Role:
                             <input
@@ -51,6 +61,7 @@ export default class SearchForm extends Component {
                             name="location"
                             onChange={this.handleInputChange} />
                         </label>
+                        <input type="submit" value="Submit"/>
                     </form>
                 </React.Fragment>
                 <JobCardCollections props={this.state}/>
