@@ -1,5 +1,6 @@
 import React from 'react';
 import JobCard from './JobCard';
+import './JobCardCollection.css';
 
 export default function JobCardCollections(props) {
     let jobs = props.jobArray;

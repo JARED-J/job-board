@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchForm';
+import SearchForm from './SearchForm';
 import Navbar from './Navbar';
 import './App.css';
 
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
-        <SearchBar/>
+        <SearchForm/>
       </div>
     );
   }
